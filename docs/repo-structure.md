@@ -1,144 +1,91 @@
-# 專案結構說明
+# 專案結構
 
-這份 template 把「給人讀的文件」、「給 Agent 讀的規則」、「給程式讀的資料」分開。
+這份模板把四種東西分開：
 
-更完整的閱讀順序請先看 `docs/README.md`。如果要理解教學設計取捨，請看 `docs/teaching-method.md`。
+- 給人操作的文件
+- 給 Agent 執行的規則
+- 給程式讀的資料
+- 前端展示程式
 
----
-
-## 根目錄
-
-```text
-AGENTS.md
-README.md
-package.json
-index.html
-```
-
-- `AGENTS.md`：給 Coding Agent 看的英文執行規範，不放教學推演。
-- `README.md`：給學員、助教、講師的專案入口。
-- `package.json`：npm 指令與開發依賴。
-- `index.html`：前端展示頁入口。
-
----
-
-## notes/
-
-學員先用自然語言寫草稿。
+## 主要路徑
 
 ```text
-notes/<GitHub 帳號>.md
+.
+├── AGENTS.md
+├── README.md
+├── data/
+├── docs/
+├── notes/
+├── profiles/
+├── schemas/
+├── scripts/
+├── src/
+└── tasks/
 ```
 
-這是給 Coding Agent 理解偏好的輸入。
+## 路徑職責
 
----
+| 路徑 | 職責 |
+|---|---|
+| `AGENTS.md` | Coding Agent 的執行合約 |
+| `README.md` | 所有人都能讀的入口 |
+| `tasks/` | 學員可照做的任務卡 |
+| `notes/` | 學員自然語言草稿 |
+| `profiles/` | Showcase 會讀取的公開 JSON |
+| `schemas/` | profile JSON 規格 |
+| `data/` | faction 固定代號與顯示名稱 |
+| `scripts/` | 驗證與統計工具 |
+| `src/` | 前端展示頁 |
+| `docs/` | 課程設計、助教支援、維護說明 |
 
-## profiles/
-
-Coding Agent 會根據 `notes/` 產生 JSON：
+## 資料流
 
 ```text
-profiles/<GitHub 帳號>.json
+notes/<github>.md
+→ Coding Agent
+→ profiles/<github>.json
+→ scripts/validate-profiles.mjs
+→ src/main.js
+→ Showcase page
 ```
 
-這是前端展示頁會讀取的資料。
+## 重要契約
 
----
+### Profile schema
 
-## schemas/
+`schemas/profile.schema.json` 定義公開 profile 欄位、長度與 faction enum。
 
-```text
-schemas/profile.schema.json
-```
+### Faction options
 
-這份檔案定義 profile JSON 的規格。
+`data/faction-options.json` 是 faction 代號的唯一來源。
 
-VS Code 會根據它提示 JSON 格式問題。
-
----
-
-## data/
-
-```text
-data/faction-options.json
-```
-
-這份檔案定義 faction 可以使用的固定代號。
-
-例如：
+profile JSON 存代號：
 
 ```json
 "editor": "vscode"
 ```
 
-顯示時才轉成：
+畫面顯示名稱：
 
 ```text
 VS Code
 ```
 
----
+### Validation
 
-## src/
+`npm run validate` 會檢查：
 
-```text
-src/main.js
-src/styles.css
-```
+- GitHub 帳號格式
+- 必填欄位
+- 字數與 interests 數量
+- faction 是否使用已知代號
+- profile 檔名是否符合 GitHub 帳號
+- GitHub 帳號是否重複
 
-前端展示頁的主要程式和樣式。
+### Frontend
 
-`src/main.js` 會讀取 `profiles/*.json`，產生：
+`src/main.js` 使用 `import.meta.glob('../profiles/*.json')` 讀取 profile。
 
-- 主輪播
-- 成員卡片牆
-- faction 統計
-- 點擊展開的 profile dialog
+如果沒有 profile JSON，頁面會使用 fallback demo data，讓空模板仍可預覽。
 
----
-
-## scripts/
-
-```text
-scripts/validate-profiles.mjs
-scripts/faction-stats.mjs
-```
-
-用來檢查資料與統計陣營。
-
-```bash
-npm run validate
-npm run stats
-```
-
----
-
-## docs/
-
-```text
-docs/README.md
-docs/day1-flow.md
-docs/teaching-method.md
-docs/privacy.md
-docs/repo-structure.md
-docs/agent-prompt-examples.md
-```
-
-- `docs/README.md`：文件導覽，說明不同角色應該讀哪些文件。
-- `docs/day1-flow.md`：先導課程流程，適合講師與助教課前閱讀。
-- `docs/teaching-method.md`：教學方法與設計取捨，保留高層次課程設計，不記錄私人對談脈絡。
-- `docs/privacy.md`：公開資料與隱私提醒。
-- `docs/repo-structure.md`：你現在正在看的文件。
-- `docs/agent-prompt-examples.md`：可複製使用的 Coding Agent prompt 範例。
-
----
-
-## tasks/
-
-放給學員和 Coding Agent 使用的任務說明。
-
-建議照順序做：
-
-1. `tasks/01-create-profile.md`
-2. `tasks/02-build-showcase.md`
+前端不得用 `innerHTML` 插入學員提供的文字。

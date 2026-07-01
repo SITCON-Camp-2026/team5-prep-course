@@ -1,73 +1,39 @@
 # Day 1 Prep Course 流程
 
-這份文件描述 **SITCON Camp 2026 Day 1 Prep Course** 的兩小時建議流程。
+這份文件給講師與助教課前對齊使用。
 
-這個 repo 只服務第一天先導課程，不是後續正式專案的 repo。
+兩小時內只追求一個結果：每位學員完成一份可公開檢查的 profile，並看到它出現在小隊 Showcase。
 
-目標不是提前完成後續課程的專案，而是讓大家先完成一次：
+## 課程節奏
 
-```text
-Google Docs 共編
-→ 結構化文字
-→ VS Code 開啟 repo
-→ Coding Agent 產生 profile JSON
-→ 看 diff
-→ 展示頁呈現
-```
+| 階段 | 目的 | 產出 |
+|---|---|---|
+| 開場 | 說明今天不是能力測驗，而是工具與協作暖機 | 學員知道目標 |
+| 共編自我介紹 | 練習把想法寫成有結構的文字 | 一段可轉換的草稿 |
+| 版本紀錄對照 | 從 Google Docs 帶到 Git diff | 理解「誰改了什麼」 |
+| 開啟 repo | 熟悉 VS Code、Terminal、Source Control | 可以執行指令 |
+| 建立 note | 填入願意公開的資料 | `notes/<github>.md` |
+| Agent 轉 JSON | 讓 Agent 依規格產生資料 | `profiles/<github>.json` |
+| 檢查 diff | 由人確認內容正確且可公開 | 可審查的修改 |
+| 預覽 Showcase | 看見資料變成頁面 | 本機展示頁 |
 
----
+## 開場要講清楚
 
-## 0. 開場觀念
+今天的重點不是：
 
-今天不是要考大家會不會寫程式。
+- 誰比較會寫程式
+- 誰的工具比較厲害
+- 一次理解完整 Git 流程
 
-今天要確認三件事：
+今天的重點是：
 
-1. 帳號和工具能不能用。
-2. 你能不能把想法寫成 Agent 看得懂的文字。
-3. 你能不能看懂 Agent 改了哪些檔案。
+- 帳號與工具能不能用
+- 你能不能給 Agent 清楚上下文
+- 你能不能看懂 Agent 改了哪些檔案
 
----
+## Google Docs 銜接 Git
 
-## 1. Google Docs 共編自我介紹
-
-先在 Google Docs 裡用簡單 Markdown 寫自我介紹。
-
-建議格式：
-
-```markdown
-## 暱稱
-
-## 一句話介紹
-
-## 我有興趣的主題
-
-- AI
-- 前端
-- 開放資料
-
-## 我的技術陣營
-
-- OS：Linux
-- Browser：Firefox
-- Editor：VS Code
-```
-
-這一步的重點不是 Markdown 語法，而是理解：
-
-> 有結構的文字，比一大坨文字更容易被人和 AI 理解。
-
----
-
-## 2. Google Docs 版本紀錄
-
-看 Google Docs 的版本紀錄，理解：
-
-- 誰改了什麼
-- 什麼時候改的
-- 如何回到舊版本
-
-接著帶到 Git / GitHub：
+可以用 Google Docs 版本紀錄建立直覺：
 
 | Google Docs | 程式專案 |
 |---|---|
@@ -76,85 +42,34 @@ Google Docs 共編
 | 建議模式 | pull request |
 | 誰改了哪裡 | diff |
 
----
+先讓學員理解「修改要能被看見」，再進入 Git 指令。
 
-## 3. VS Code 開啟小隊 repo
+## Repo 操作主線
 
-在 VS Code 中開啟這個小隊 repo。
-
-只需要先認識：
-
-- Explorer：看檔案
-- Editor：編輯檔案
-- Terminal：執行指令
-- Source Control：看 diff
-- Coding Agent：協助修改 repo
-
----
-
-## 4. 寫 profile note
-
-複製：
+學員實作時依序完成：
 
 ```text
 notes/profile-note.template.md
+→ notes/<GitHub 帳號>.md
+→ profiles/<GitHub 帳號>.json
+→ npm run validate
+→ npm run stats
+→ npm run dev
 ```
 
-成為自己的檔案：
+助教協助時，優先看：
+
+- `npm run validate` 的錯誤訊息
+- Source Control diff
+- `profiles/<github>.json` 是否含有不該公開的資訊
+- faction 是否使用固定代號
+
+## 收束語方向
+
+可以把今天收在這句話：
 
 ```text
-notes/<GitHub 帳號>.md
+你提供脈絡，Agent 修改 repo，前端展示結果，而你負責檢查 diff。
 ```
 
-填寫願意公開的內容。
-
----
-
-## 5. 請 Coding Agent 產生 JSON
-
-請 Coding Agent 依照 `tasks/01-create-profile.md` 建立：
-
-```text
-profiles/<GitHub 帳號>.json
-```
-
----
-
-## 6. 看 diff
-
-不要直接相信 Agent 的結果。
-
-請在 Source Control 檢查：
-
-- 新增了哪些檔案
-- JSON 內容是否正確
-- 有沒有出現不該公開的資訊
-- faction 代號是否合理
-
----
-
-## 7. 執行檢查與預覽
-
-```bash
-npm run validate
-npm run stats
-npm run dev
-```
-
-看到自己出現在展示頁上，就完成 Prep Course 核心任務。
-
----
-
-## 8. 收束
-
-今天走過的流程：
-
-```text
-想法
-→ 結構化文字
-→ Agent 產生檔案
-→ 人類檢查 diff
-→ 前端展示
-```
-
-後續課程會延續這個工作方式，但這個 repo 的任務只到 Prep Course 的工具測通、profile 建立、展示頁預覽與 diff 檢查。
+後續正式課程會更複雜，但核心習慣相同：把想法寫清楚，讓修改可檢查，讓成果能被團隊看見。

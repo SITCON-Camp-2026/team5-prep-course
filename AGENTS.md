@@ -1,67 +1,78 @@
 # AGENTS.md
 
-This repository is a team template for the **SITCON Camp 2026 Day 1 Prep Course**.
+This repository is the team template for the **SITCON Camp 2026 Day 1 Prep Course**.
 
-This repo is intentionally scoped to the preparatory session only. It is not the full Day 2 software engineering project repo.
+It is scoped to the prep session only. Do not turn it into the Day 2 project repo or a large framework-heavy app.
 
-The Prep Course goal is not to build a full project. The goal is to let students complete a minimal, safe workflow:
+## Course Contract
 
-1. describe themselves and their preferences in natural language;
-2. let a Coding Agent convert that description into structured JSON;
-3. validate the JSON against a schema and fixed faction options;
-4. render a public-facing showcase page with GitHub avatars, member cards, carousel interactions, and faction statistics;
-5. inspect the diff before committing.
+Students should complete one small, reviewable workflow:
 
-## Language rules
+1. write a public-safe natural-language note;
+2. ask a Coding Agent to convert it into profile JSON;
+3. validate the JSON against schema and fixed faction options;
+4. preview the showcase page;
+5. inspect the diff before commit or PR.
 
-- Keep this `AGENTS.md` in English so Coding Agents can follow it reliably.
-- Student-facing documents must be written in Traditional Chinese used in Taiwan.
-- Keep explanations beginner-friendly. The target audience is mostly high-school students with some programming exposure.
-- Avoid PRC vocabulary. Use Taiwan terms such as「資料夾」「檔案」「設定」「執行」「作業系統」「瀏覽器」「編輯器」.
+The point is not to build a full product. The point is to practice giving context, reviewing Agent changes, and seeing data become a page.
 
-## Repository purpose
+## Language
 
-This repo should remain a lightweight template for each camp team during the Day 1 Prep Course. It should be easy to clone, run, inspect, and modify during a two-hour prep session.
+- Keep this file in English for Coding Agents.
+- Student-facing docs must use Traditional Chinese for Taiwan.
+- Keep student instructions beginner-friendly and operational.
+- Use Taiwan terms such as「資料夾」「檔案」「設定」「執行」「作業系統」「瀏覽器」「編輯器」.
+- Avoid PRC vocabulary.
 
-Do not turn this into the main camp project or a large framework-heavy project. Prefer simple, inspectable HTML, CSS, and JavaScript.
+## Documentation Boundaries
 
-Keep documentation audience separation clear:
+- `AGENTS.md`: execution contract for Coding Agents.
+- `README.md`: project entry point.
+- `tasks/`: student task cards.
+- `notes/`: natural-language inputs.
+- `profiles/`: public profile JSON outputs.
+- `docs/`: instructor, TA, and maintainer notes.
 
-- `AGENTS.md` is the execution contract for Coding Agents.
-- `README.md`, `tasks/`, `notes/`, and `profiles/` are student-facing or student-adjacent.
-- `docs/teaching-method.md` records teaching design principles for instructors and TAs.
-- Do not add private conversation history or meeting-style reasoning traces to repository documents.
+Do not add private conversation history, meeting notes, or raw reasoning traces to repository docs.
 
-## Privacy and safety rules
+## Public Data Rules
 
-The final page may be publicly viewable. Treat all profile data as public.
+Treat every profile as public.
 
-Never add or infer the following fields:
+Allowed fields are:
 
-- real name, unless the student explicitly says they want it public;
+- GitHub username;
+- display name or nickname;
+- short tagline;
+- one to three interests;
+- `faction.os`, `faction.browser`, `faction.editor`.
+
+Never add or infer:
+
+- real name, unless explicitly requested for public display;
 - school, class, grade, age, birthday;
 - email, phone, LINE, Discord, private social accounts;
 - address or location;
 - health, religion, politics, family background, or other sensitive information;
 - weaknesses or embarrassing self-disclosures.
 
-Use GitHub username only for avatar and profile link. Students may choose a display name or nickname.
+Use the GitHub username only for avatar and profile link. If a note includes private data, omit it and explain what was excluded.
 
-If the student's note contains private data, do not copy it into JSON. Tell the student which information was intentionally excluded.
-
-## Profile workflow
+## Profile Workflow
 
 Students should not manually write JSON as the default path.
 
-Expected flow:
+When creating a profile:
 
-1. The student writes a natural-language note using `notes/profile-note.template.md`.
-2. The agent reads that note, `schemas/profile.schema.json`, and `data/faction-options.json`.
-3. The agent creates `profiles/<github>.json`.
-4. The agent checks that all faction values use fixed lowercase IDs.
-5. The student reviews the diff before commit.
+1. read the relevant task file in `tasks/`;
+2. read the student's note;
+3. read `schemas/profile.schema.json`;
+4. read `data/faction-options.json`;
+5. create `profiles/<github>.json`;
+6. run `npm run validate`;
+7. tell the student what to inspect in the diff.
 
-Profile JSON format:
+Profile shape:
 
 ```json
 {
@@ -78,47 +89,39 @@ Profile JSON format:
 }
 ```
 
-## Faction mapping rules
+## Faction Mapping
 
 Use IDs from `data/faction-options.json`, not display labels.
 
 Examples:
 
-- Use `vscode`, not `VS Code`, `vscode `, `Visual Studio Code`, or `vs code`.
-- Use `macos`, not `Mac`, `macOS`, or `Mac OS`.
-- Use `firefox`, not `Firefox`.
+- `vscode`, not `VS Code` or `Visual Studio Code`;
+- `macos`, not `Mac` or `Mac OS`;
+- `firefox`, not `Firefox`.
 
-If a student's answer is ambiguous:
+If the student's answer is ambiguous, choose the closest listed ID when reasonable and explain the assumption. Use `other` only when no listed option fits.
 
-1. choose the closest listed ID if reasonable;
-2. explain the assumption in the response;
-3. use `other` only when no listed option fits.
+Do not infer faction values from the classroom computer.
 
-Do not infer faction values from the classroom computer. The classroom machines are preinstalled for the course and may not represent the student's actual preference. Ask the student to describe what they usually use or what faction they want to represent.
+## Frontend Rules
 
-## Coding and design rules
-
-- Keep the frontend visually rich but understandable.
-- Prefer vanilla HTML/CSS/JavaScript unless the instructor explicitly asks for more.
-- Do not introduce new runtime dependencies without a clear reason.
+- Prefer vanilla HTML, CSS, and JavaScript.
+- Do not add runtime dependencies without a clear reason.
 - Keep animations performant and accessible.
 - Respect `prefers-reduced-motion`.
 - Do not use `innerHTML` for student-provided text. Use `textContent` and DOM APIs.
-- GitHub avatar URLs may use `https://github.com/<github>.png`.
+- GitHub avatars may use `https://github.com/<github>.png`.
 - GitHub profile links may use `https://github.com/<github>`.
 
-## Agent behavior rules
+## Agent Behavior
 
-- Read the relevant task file in `tasks/` before editing.
 - Keep changes small and reviewable.
-- Explain which files were changed and why.
-- Tell students what to inspect in the diff.
-- Do not commit, push, merge, or deploy unless the user explicitly asks.
+- Do not rewrite the whole project to make a small change.
 - Do not delete student profile files unless explicitly requested.
-- Do not rewrite the entire project to make a small change.
+- Do not commit, push, merge, or deploy unless explicitly requested.
 - If validation fails, fix the data or explain the issue clearly.
 
-## Useful commands
+Useful commands:
 
 ```bash
 npm install
@@ -127,7 +130,3 @@ npm run validate
 npm run stats
 npm run build
 ```
-
-Use `npm run validate` after adding or editing profiles.
-Use `npm run stats` to preview faction counts in the terminal.
-Use `npm run dev` to preview the showcase locally.
