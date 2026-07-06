@@ -3,9 +3,9 @@
   "github": "yukicoder0509",
   "displayName": "Yuki",
   "tagline": "用軟體工程解決生活中遇到的實際問題",
-  "interests": ["後端", "前端", "軟體工程", "系統架構"],
+  "interests": ["後端", "前端", "軟體工程"],
   "faction": {
-    "os": "MacOS",
+    "os": "macos",
     "browser": "firefox",
     "editor": "vscode"
   }
