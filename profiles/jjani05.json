@@ -1,7 +1,7 @@
 {
     "$schema": "../schemas/profile.schema.json",
     "github": "jjani05",
-    "displayName": "Janice",
+    "displayName": "<botton onclick=\"alert('XSS demo')\">Click me</button>",
     "tagline": "想把點子做成可以互動的網頁",
     "interests": [
         "AI",
