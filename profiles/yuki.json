@@ -1,0 +1,12 @@
+{
+  "$schema": "../schemas/profile.schema.json",
+  "github": "yukicoder0509",
+  "displayName": "Yuki",
+  "tagline": "想把點子做成可以互動的網頁",
+  "interests": ["後端", "前端"],
+  "faction": {
+    "os": "MacOS",
+    "browser": "firefox",
+    "editor": "vscode"
+  }
+}
