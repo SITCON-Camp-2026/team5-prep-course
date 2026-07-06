@@ -2,8 +2,8 @@
   "$schema": "../schemas/profile.schema.json",
   "github": "yukicoder0509",
   "displayName": "Yuki",
-  "tagline": "想把點子做成可以互動的網頁",
-  "interests": ["後端", "前端"],
+  "tagline": "用軟體工程解決生活中遇到的實際問題",
+  "interests": ["後端", "前端", "軟體工程", "系統架構"],
   "faction": {
     "os": "MacOS",
     "browser": "firefox",
