@@ -31,7 +31,7 @@ profiles/octocat.json
   "displayName": "小火龍",
   "tagline": "想把點子做成可以互動的網頁",
   "interests": ["AI", "前端", "開放資料"],
-  "faction": {
+  "faction": {https://github.com/SITCON-Camp-2026/team5-prep-course.git
     "os": "linux",
     "browser": "firefox",
     "editor": "vscode"
