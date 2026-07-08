@@ -1,0 +1,15 @@
+{
+    "$schema": "../schemas/profile.schema.json",
+    "github": "orange0730",
+    "displayName": "吳東橙",
+    "tagline": "我很菜",
+    "interests": [
+        "AI",
+        "競程"
+    ],
+    "faction": {
+        "os": "windows",
+        "browser": "chrome",
+        "editor": "vscode"
+    }
+}
