@@ -1,0 +1,14 @@
+{
+    "$schema": "../schemas/profile.schema.json",
+    "github": "arthur981207",
+    "displayName": "何秉鋐",
+    "tagline": "我是何秉鋐",
+    "interests": [
+        "軟體工程"
+    ],
+    "faction": {
+        "os": "windows",
+        "browser": "chrome",
+        "editor": "vscode"
+    }
+}
