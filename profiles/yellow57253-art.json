@@ -1,0 +1,12 @@
+{
+  "$schema": "../schemas/profile.schema.json",
+  "github": "yellow57253-art",
+  "displayName": "蕭英傑",
+  "tagline": "跨域成就未來",
+  "interests": ["資訊安全", "軟體工程", "AI"],
+  "faction": {
+    "os": "windows",
+    "browser": "chrome",
+    "editor": "vscode"
+  }
+}
