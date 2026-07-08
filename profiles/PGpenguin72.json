@@ -1,0 +1,13 @@
+{
+  "$schema": "../schemas/profile.schema.json",
+  "github": "PGpenguin72",
+  "displayName": "PG企鵝",
+  "tagline": "THJCC 3rd Summer Edition 總召",
+  "interests": ["AI", "資安", "競程"],
+  "faction": {
+    "os": "macos",
+    "browser": "chrome",
+    "editor": "vscode"
+  }
+}
+
