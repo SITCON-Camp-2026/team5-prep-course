@@ -1,0 +1,15 @@
+{
+    "$schema": "../schemas/profile.schema.json",
+    "github": "106215claudia-ship-it",
+    "displayName": "王芃云",
+    "tagline": "塵世裡的平凡人",
+    "interests": [
+        "AI",
+        "軟體設計"
+    ],
+    "faction": {
+        "os": "windows",
+        "browser": "chrome",
+        "editor": "other"
+    }
+}
